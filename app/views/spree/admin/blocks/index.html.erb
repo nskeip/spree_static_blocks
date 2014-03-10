@@ -1,45 +1,40 @@
 <%= render 'spree/admin/shared/configuration_menu' %>
 
-<% content_for :page_actions do %>
-  <li><%= button_link_to Spree.t("static_content.new_page"), new_object_url, :icon => 'icon-plus', :id => 'admin_new_page' %></li>
+<% content_for :block_actions do %>
+  <li><%= button_link_to Spree.t("static_content.new_block"), new_object_url, :icon => 'icon-plus', :id => 'admin_new_block' %></li>
 <% end %>
 
-<% content_for :page_title do %>
-   <%= Spree.t("static_content.static_pages") %>
+<% content_for :block_title do %>
+   <%= Spree.t("static_content.static_blocks") %>
 <% end %>
 
-<% if @pages.any? %>
-<table class="index responsive" id="listing_pages" data-hook>
+<% if @blocks.any? %>
+<table class="index responsive" id="listing_blocks" data-hook>
   <colgroup>
     <col style="width: 40%">
-    <col style="width: 35%">
-    <col style="width: 10%">
+    <col style="width: 45%">
     <col style="width: 15%">
   </colgroup>
   <thead>
-    <tr data-hook="admin_pages_index_headers">
-      <th><%= Spree::Page.human_attribute_name(:title) %></th>
-      <th><%= Spree.t("static_content.link") %></th>
-      <th><%= Spree::Page.human_attribute_name(:visible) %></th>
-      <th data-hook="admin_pages_index_header_actions" class="actions"></th>
+    <tr data-hook="admin_blocks_index_headers">
+      <th><%= Spree.t("static_content.code") %></th>
+      <th><%= Spree.t("static_content.text") %></th>
+      <th data-hook="admin_blocks_index_header_actions" class="actions"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @pages.each do |page| %>
-      <tr data-hook="admin_pages_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= dom_id page %>">
+    <% @blocks.each do |block| %>
+      <tr data-hook="admin_blocks_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= dom_id block %>">
         <td>
-          <%= page.title %>
+          <%= block.title %>
         </td>
         <td>
-          <%= link_to page.link, page.link, :target => '_blank' %>
+          <%= link_to block.link, block.link, :target => '_blank' %>
         </td>
-        <td class="align-center">
-          <%= content_tag(:i, '', :class => 'icon-ok green') if page.visible %>
-        </td>
-        <td class="actions" data-hook="admin_pages_index_row_actions">
-          <%= link_to_edit page, :no_text => true %>
-          <%= link_to_delete page, :no_text => true %>
+        <td class="actions" data-hook="admin_blocks_index_row_actions">
+          <%= link_to_edit block, :no_text => true %>
+          <%= link_to_delete block, :no_text => true %>
         </td>
       </tr>
     <% end %>
@@ -47,7 +42,7 @@
 </table>
 <% else %>
   <div class="alpha twelve columns no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/page')) %>,
-    <%= link_to Spree.t(:add_one), spree.new_admin_page_path %>!
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/block')) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_block_path %>!
   </div>
 <% end %>
