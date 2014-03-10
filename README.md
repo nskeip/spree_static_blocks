@@ -9,7 +9,7 @@ Installation
 Add spree_static_blocks to your Gemfile:
 
 ```ruby
-gem 'spree_static_blocks'
+gem 'spree_static_blocks', :git => 'git://github.com/nskeip/spree_static_blocks.git'
 ```
 
 Bundle your dependencies and run the installation generator:
