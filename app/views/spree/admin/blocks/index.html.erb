@@ -4,21 +4,19 @@
   <li><%= button_link_to Spree.t("static_content.new_block"), new_object_url, :icon => 'icon-plus', :id => 'admin_new_block' %></li>
 <% end %>
 
-<% content_for :block_title do %>
+<% content_for :block_code do %>
    <%= Spree.t("static_content.static_blocks") %>
 <% end %>
 
 <% if @blocks.any? %>
 <table class="index responsive" id="listing_blocks" data-hook>
   <colgroup>
-    <col style="width: 40%">
-    <col style="width: 45%">
+    <col style="width: 85%">
     <col style="width: 15%">
   </colgroup>
   <thead>
     <tr data-hook="admin_blocks_index_headers">
       <th><%= Spree.t("static_content.code") %></th>
-      <th><%= Spree.t("static_content.text") %></th>
       <th data-hook="admin_blocks_index_header_actions" class="actions"></th>
     </tr>
   </thead>
@@ -27,10 +25,7 @@
     <% @blocks.each do |block| %>
       <tr data-hook="admin_blocks_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= dom_id block %>">
         <td>
-          <%= block.title %>
-        </td>
-        <td>
-          <%= link_to block.link, block.link, :target => '_blank' %>
+          <%= block.code %>
         </td>
         <td class="actions" data-hook="admin_blocks_index_row_actions">
           <%= link_to_edit block, :no_text => true %>
