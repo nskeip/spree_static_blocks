@@ -1,3 +1,3 @@
 class Spree::Block < ActiveRecord::Base
-  validates_presence_of :code
+  validates :code, presence: true, uniqueness: true
 end
