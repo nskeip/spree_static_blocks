@@ -7,10 +7,10 @@ module Spree
         Block.find_by_code(code)
       end
 
-      if !block.nil? & block.text?
-        block.text.html_safe
-      else
+      if block.nil? || !block.respond_to?(:text)
         ""
+      else
+        block.text.html_safe
       end
     end
   end
