@@ -1,8 +1,13 @@
 module Spree
   module BlocksHelper
-    def static_block(code)
-      block = Block.find_or_create_by_code(code)
-      if block.text?
+    def static_block(code, autocreate=true)
+      block = if autocreate
+        Block.find_or_create_by_code(code)
+      else
+        Block.find_by_code(code)
+      end
+
+      if !block.nil? & block.text?
         block.text.html_safe
       else
         ""

@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_static_blocks'
-  s.version     = '0.1'
+  s.version     = '0.2'
   s.summary     = 'Extension for managing static blocks of content on your pages'
   s.description = s.summary 
   s.required_ruby_version = '>= 1.9.3'
